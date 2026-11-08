@@ -1,0 +1,310 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore Nepal's destinations, landscapes, and culture.">
+  <title>Places to Visit | Visit Nepal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body id="top">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+
+      <a class="brand" href="index.html" aria-label="Visit Nepal home">
+        <img
+          src="Logo.png"
+          alt="Visit Nepal Logo"
+          class="site-logo"
+        >
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="destinations.html" aria-current="page">Destinations</a>
+        <a href="details.html?place=pokhara">Destination Details</a>
+        <a href="reviews.html">Reviews</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main id="main" class="container">
+
+    <section class="section">
+
+      <h1>Places to Visit in Nepal</h1>
+
+      <p>
+        Explore some of Nepal's most popular travel destinations.
+      </p>
+
+      <form class="search" id="destination-search">
+
+        <label for="place-search">Search by place</label>
+
+        <input
+          id="place-search"
+          name="place"
+          type="search"
+          placeholder="e.g., Pokhara"
+          aria-describedby="search-help"
+        >
+
+        <small id="search-help">
+          Enter a destination name to find a place.
+        </small>
+
+        <button type="submit">Search</button>
+
+      </form>
+
+      <div class="cards" id="destination-cards">
+
+        <article class="card destination" data-place="pokhara">
+
+          <div class="scene scene-lake">
+            <img
+              src="Pokhara.jpg"
+              alt="Beautiful scenery of Pokhara, Nepal"
+              loading="lazy"
+            >
+          </div>
+
+          <h2>Pokhara</h2>
+
+          <p>
+            Enjoy Phewa Lake, mountain views, and peaceful surroundings.
+            Pokhara is also a gateway to the Annapurna region.
+          </p>
+
+          <a href="details.html?place=pokhara">
+            View Pokhara details →
+          </a>
+
+        </article>
+
+        <article class="card destination" data-place="kathmandu">
+
+          <div class="scene scene-city">
+            <img
+              src="Kathmandu.jpg"
+              alt="Historic architecture in Kathmandu, Nepal"
+              loading="lazy"
+            >
+          </div>
+
+          <h2>Kathmandu</h2>
+
+          <p>
+            Explore historic squares, temples, local markets,
+            and Nepal's lively capital city.
+          </p>
+
+          <a href="details.html?place=kathmandu">
+            View Kathmandu details →
+          </a>
+
+        </article>
+
+        <article class="card destination" data-place="chitwan">
+
+          <div class="scene scene-forest">
+            <img
+              src="Chitwan.jpg"
+              alt="Wildlife and natural scenery in Chitwan National Park, Nepal"
+              loading="lazy"
+            >
+          </div>
+
+          <h2>Chitwan</h2>
+
+          <p>
+            Discover lowland forests, wildlife, and opportunities
+            to learn about local Tharu culture.
+          </p>
+
+          <a href="details.html?place=chitwan">
+            View Chitwan details →
+          </a>
+
+        </article>
+
+        <article class="card destination" data-place="everest">
+
+          <div class="scene scene-mountain">
+            <img
+              src="Everest.jpg"
+              alt="Mount Everest Base Camp with snowy mountains and tents"
+              loading="lazy"
+            >
+          </div>
+
+          <h2>Everest Region</h2>
+
+          <p>
+            Experience Himalayan scenery and trekking routes
+            around the world's highest mountain.
+          </p>
+
+          <a href="details.html?place=everest">
+            View Everest Region details →
+          </a>
+
+        </article>
+
+      </div>
+
+      <p id="no-results" hidden>
+        No destinations found. Try searching for another place.
+      </p>
+
+    </section>
+
+    <section class="section" id="traveler-reviews">
+
+      <h2>Traveler Reviews</h2>
+
+      <p>
+        Read what visitors have shared about their experiences
+        in Nepal.
+      </p>
+
+      <div id="reviews-list" class="cards"></div>
+
+    </section>
+
+    <section class="section highlight">
+
+      <h2>Visited one of these places?</h2>
+
+      <p>
+        Share your experience with other travelers.
+      </p>
+
+      <a class="button" href="reviews.html">
+        Leave a review
+      </a>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+
+      <p>
+        © 2026 Visit Nepal · Student interface design project
+      </p>
+
+      <a href="#top">Back to top ↑</a>
+
+    </div>
+  </footer>
+
+  <script>
+
+    const searchForm = document.getElementById("destination-search");
+    const searchInput = document.getElementById("place-search");
+    const destinationCards = document.querySelectorAll(
+      ".destination"
+    );
+    const noResults = document.getElementById("no-results");
+
+    function searchDestinations() {
+
+      const searchText = searchInput.value.trim().toLowerCase();
+      let found = 0;
+
+      destinationCards.forEach(function(card) {
+
+        const placeName = card.dataset.place;
+
+        if (placeName.includes(searchText)) {
+          card.hidden = false;
+          found++;
+        } else {
+          card.hidden = true;
+        }
+
+      });
+
+      noResults.hidden = found > 0;
+    }
+
+    searchForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      searchDestinations();
+    });
+
+    searchInput.addEventListener("input", searchDestinations);
+
+    const reviewsList = document.getElementById("reviews-list");
+
+    const reviews = JSON.parse(
+      localStorage.getItem("nepalReviews") || "[]"
+    );
+
+    if (reviews.length === 0) {
+
+      const message = document.createElement("p");
+
+      message.textContent =
+        "No reviews yet. Be the first to share!";
+
+      reviewsList.appendChild(message);
+
+    } else {
+
+      reviews.forEach(function(review) {
+
+        const card = document.createElement("article");
+        card.className = "card";
+
+        const place = document.createElement("h3");
+        place.textContent = review.destination;
+
+        const name = document.createElement("p");
+        name.textContent = "Reviewed by: " + review.name;
+
+        const rating = document.createElement("p");
+
+        const stars = Math.max(
+          0,
+          Math.min(5, Number(review.rating) || 0)
+        );
+
+        rating.textContent =
+          "Rating: " +
+          "★".repeat(stars) +
+          "☆".repeat(5 - stars);
+
+        const experience = document.createElement("p");
+        experience.textContent = review.experience;
+
+        const date = document.createElement("p");
+        date.className = "note";
+        date.textContent = "Posted: " + review.date;
+
+        card.appendChild(place);
+        card.appendChild(name);
+        card.appendChild(rating);
+        card.appendChild(experience);
+        card.appendChild(date);
+
+        reviewsList.appendChild(card);
+
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>

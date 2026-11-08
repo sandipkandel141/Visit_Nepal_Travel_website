@@ -1,0 +1,358 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Share your travel experience in Nepal.">
+  <title>Share Your Experience | Visit Nepal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body id="top">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+
+      <a class="brand" href="index.html" aria-label="Visit Nepal home">
+        <img
+          src="Logo.png"
+          alt="Visit Nepal Logo"
+          class="site-logo"
+        >
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="details.html">Destination Details</a>
+        <a href="reviews.html" aria-current="page">Reviews</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main id="main" class="container">
+
+    <section class="section form-section">
+
+      <div>
+
+        <p class="eyebrow">TRAVELER FEEDBACK</p>
+
+        <h1>Leave a Review</h1>
+
+        <p>
+          Have you visited Nepal? Share your thoughts about a
+          destination to help other visitors learn about it.
+        </p>
+
+        <img
+          class="review-photo"
+          src="Everest.jpg"
+          alt="Snowy Himalayan mountains in Nepal"
+          loading="lazy"
+        >
+
+        <div class="card">
+
+          <h2>What to include</h2>
+
+          <ul>
+            <li>Which destination you visited</li>
+            <li>What you enjoyed most</li>
+            <li>Tips you would share with other travelers</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <div
+          id="thank-you-message"
+          class="card"
+          hidden
+          role="status"
+          aria-live="polite"
+        >
+
+          <h2>Thank you for your review!</h2>
+
+          <p>
+            Your review has been submitted successfully.
+            We appreciate you sharing your travel experience.
+          </p>
+
+          <p>
+            Your review is now saved and can be viewed under
+            Previous Visitors' Reviews on the selected
+            destination's Details page.
+          </p>
+
+          <a
+            id="view-review-link"
+            class="button"
+            href="destinations.html"
+          >
+            View your review →
+          </a>
+
+          <p style="margin-top: 20px;">
+            <a href="destinations.html">
+              Explore more destinations
+            </a>
+          </p>
+
+        </div>
+
+        <form class="review-form" id="review-form">
+
+          <h2>Your Review</h2>
+
+          <label for="visitor">Your name</label>
+
+          <input
+            id="visitor"
+            name="visitor"
+            type="text"
+            placeholder="Enter your name"
+            maxlength="80"
+            autocomplete="name"
+            required
+          >
+
+          <label for="destination">Place visited</label>
+
+          <select
+            id="destination"
+            name="destination"
+            required
+          >
+            <option value="">Select a place</option>
+            <option value="Pokhara">Pokhara</option>
+            <option value="Kathmandu">Kathmandu</option>
+            <option value="Chitwan">Chitwan</option>
+            <option value="Everest Region">Everest Region</option>
+          </select>
+
+          <fieldset>
+
+            <legend>Your rating</legend>
+
+            <div class="ratings">
+
+              <label>
+                <input
+                  type="radio"
+                  name="rating"
+                  value="1"
+                  required
+                >
+                1
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="rating"
+                  value="2"
+                >
+                2
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="rating"
+                  value="3"
+                >
+                3
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="rating"
+                  value="4"
+                >
+                4
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="rating"
+                  value="5"
+                >
+                5
+              </label>
+
+            </div>
+
+          </fieldset>
+
+          <label for="review">Your experience</label>
+
+          <textarea
+            id="review"
+            name="review"
+            rows="6"
+            maxlength="2000"
+            placeholder="What did you enjoy about your visit?"
+            required
+          ></textarea>
+
+          <button type="submit">
+            Submit review
+          </button>
+
+          <p id="review-error" class="note" role="alert" hidden>
+            Your review could not be saved.
+            Please try again.
+          </p>
+
+          <p class="note">
+            Your review will appear on the Destinations page
+            and under Previous Visitors' Reviews on the
+            selected destination's Details page.
+            Reviews are saved in this browser only.
+          </p>
+
+        </form>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+
+      <p>
+        © 2026 Visit Nepal · Student interface design project
+      </p>
+
+      <a href="#top">Back to top ↑</a>
+
+    </div>
+  </footer>
+
+  <script>
+
+    const reviewForm = document.getElementById("review-form");
+
+    const destinationNames = {
+      pokhara: "Pokhara",
+      kathmandu: "Kathmandu",
+      chitwan: "Chitwan",
+      everest: "Everest Region"
+    };
+
+    const destinationIds = {
+      "Pokhara": "pokhara",
+      "Kathmandu": "kathmandu",
+      "Chitwan": "chitwan",
+      "Everest Region": "everest"
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const selectedPlace = params.get("place");
+
+    if (destinationNames[selectedPlace]) {
+
+      document.getElementById("destination").value =
+        destinationNames[selectedPlace];
+
+    }
+
+    reviewForm.addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      const name = document.getElementById("visitor").value.trim();
+
+      const destination = document.getElementById("destination").value;
+
+      const selectedRating = document.querySelector(
+        'input[name="rating"]:checked'
+      );
+
+      const experience = document.getElementById("review").value.trim();
+
+      if (
+        !name ||
+        !destinationIds[destination] ||
+        !selectedRating ||
+        !experience
+      ) {
+        return;
+      }
+
+      const newReview = {
+        name: name,
+        destination: destination,
+        rating: Number(selectedRating.value),
+        experience: experience,
+        date: new Date().toLocaleDateString()
+      };
+
+      try {
+
+        const reviews = JSON.parse(
+          localStorage.getItem("nepalReviews") || "[]"
+        );
+
+        reviews.push(newReview);
+
+        localStorage.setItem(
+          "nepalReviews",
+          JSON.stringify(reviews)
+        );
+
+      } catch (error) {
+
+        document.getElementById("review-error").hidden = false;
+
+        return;
+      }
+
+      const thankYouMessage = document.getElementById(
+        "thank-you-message"
+      );
+
+      reviewForm.hidden = true;
+
+      thankYouMessage.hidden = false;
+
+      const destinationId = destinationIds[destination];
+
+      const viewReviewLink = document.getElementById(
+        "view-review-link"
+      );
+
+      viewReviewLink.href =
+        "details.html?place=" +
+        destinationId +
+        "#previous-reviews";
+
+      thankYouMessage.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+      viewReviewLink.focus({
+        preventScroll: true
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>

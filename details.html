@@ -1,0 +1,450 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore Nepal's destinations, landscapes, and culture.">
+  <title>Destination Details | Visit Nepal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body id="top">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+
+      <a class="brand" href="index.html" aria-label="Visit Nepal home">
+        <img
+          src="Logo.png"
+          alt="Visit Nepal Logo"
+          class="site-logo"
+        >
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="details.html" aria-current="page">Destination Details</a>
+        <a href="reviews.html">Reviews</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main id="main" class="container">
+
+    <section class="section">
+
+      <p class="eyebrow">SELECTED DESTINATION</p>
+
+      <h1 id="place-name">Pokhara</h1>
+
+      <div class="detail-hero">
+
+        <div class="scene">
+          <img
+            id="place-image"
+            src="Pokhara.jpg"
+            alt="Scenery of Pokhara, Nepal"
+            loading="eager"
+          >
+        </div>
+
+        <div>
+
+          <h2>Introduction</h2>
+
+          <p id="place-description"></p>
+
+          <a
+            class="button"
+            id="review-link"
+            href="reviews.html?place=pokhara"
+          >
+            Review this destination
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section">
+
+      <h2>Places to visit</h2>
+
+      <div class="cards" id="attractions-list"></div>
+
+    </section>
+
+    <section class="section highlight">
+
+      <h2>Estimated travel cost</h2>
+
+      <p>
+        Sample daily budget for one traveler
+        (illustrative, not a live quote):
+      </p>
+
+      <ul class="budget" id="budget-list"></ul>
+
+      <p class="note">
+        Actual costs vary by season, activity, and travel style.
+        International flights and long-distance transport
+        are not included.
+      </p>
+
+    </section>
+
+    <section class="section" id="previous-reviews">
+
+      <h2>Previous Visitors' Reviews</h2>
+
+      <p id="reviews-description">
+        Read what other travelers have shared about this destination.
+      </p>
+
+      <div class="cards" id="destination-reviews"></div>
+
+      <p style="margin-top: 24px;">
+        <a class="button" id="leave-review-link" href="reviews.html">
+          Leave a review
+        </a>
+      </p>
+
+    </section>
+
+    <section class="section" id="other-places">
+
+      <h2>Explore other destinations</h2>
+
+      <p>
+        Interested in another place?
+        Choose a destination below.
+      </p>
+
+      <div class="cards">
+
+        <article class="card">
+          <h3>Pokhara</h3>
+          <a href="details.html?place=pokhara">
+            Explore Pokhara →
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>Kathmandu</h3>
+          <a href="details.html?place=kathmandu">
+            Explore Kathmandu →
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>Chitwan</h3>
+          <a href="details.html?place=chitwan">
+            Explore Chitwan →
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>Everest Region</h3>
+          <a href="details.html?place=everest">
+            Explore Everest →
+          </a>
+        </article>
+
+      </div>
+
+      <p style="margin-top: 24px;">
+        <a href="destinations.html">
+          ← Back to all destinations
+        </a>
+      </p>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+
+      <p>© 2026 Visit Nepal · Student interface design project</p>
+
+      <a href="#top">Back to top ↑</a>
+
+    </div>
+  </footer>
+
+  <script>
+
+    const destinations = {
+
+      pokhara: {
+        name: "Pokhara",
+        image: "Pokhara.jpg",
+
+        description:
+          "Pokhara is a scenic city in central Nepal, known for " +
+          "Phewa Lake and views of the Annapurna mountain range. " +
+          "It is a popular destination for relaxation, boating, " +
+          "and outdoor activities.",
+
+        attractions: [
+          {
+            name: "Phewa Lake",
+            description: "Enjoy boating, lakeside walks, and mountain views."
+          },
+          {
+            name: "World Peace Pagoda",
+            description: "Visit a peaceful viewpoint overlooking Pokhara."
+          },
+          {
+            name: "Davis Falls",
+            description: "Explore a famous waterfall near the city."
+          }
+        ],
+
+        budget: [
+          ["Accommodation", "$15–$40"],
+          ["Meals", "$10–$20"],
+          ["Local transport and activities", "$10–$30"],
+          ["Approximate total per day", "$35–$90"]
+        ]
+      },
+
+      kathmandu: {
+        name: "Kathmandu",
+        image: "Kathmandu.jpg",
+
+        description:
+          "Kathmandu is the capital of Nepal and is known for its " +
+          "historic temples, cultural heritage, traditional markets, " +
+          "and busy city life. Visitors can explore ancient " +
+          "architecture and learn about Nepalese traditions.",
+
+        attractions: [
+          {
+            name: "Pashupatinath Temple",
+            description: "Visit an important Hindu temple complex."
+          },
+          {
+            name: "Swayambhunath Stupa",
+            description: "Explore the famous hilltop stupa, also called the Monkey Temple."
+          },
+          {
+            name: "Kathmandu Durbar Square",
+            description: "Discover historic palaces, temples, and traditional architecture."
+          }
+        ],
+
+        budget: [
+          ["Accommodation", "$15–$45"],
+          ["Meals", "$10–$25"],
+          ["Local transport and activities", "$10–$30"],
+          ["Approximate total per day", "$35–$100"]
+        ]
+      },
+
+      chitwan: {
+        name: "Chitwan",
+        image: "Chitwan.jpg",
+
+        description:
+          "Chitwan is located in the southern lowlands of Nepal. " +
+          "It is famous for Chitwan National Park, wildlife, " +
+          "forests, and Tharu culture. Visitors can enjoy " +
+          "nature activities and learn about local traditions.",
+
+        attractions: [
+          {
+            name: "Chitwan National Park",
+            description: "Explore protected forests and look for wildlife with a guide."
+          },
+          {
+            name: "Rapti River",
+            description: "Enjoy riverside scenery and guided canoe activities."
+          },
+          {
+            name: "Tharu Cultural Experience",
+            description: "Learn about the traditions and culture of the Tharu community."
+          }
+        ],
+
+        budget: [
+          ["Accommodation", "$15–$45"],
+          ["Meals", "$10–$25"],
+          ["Local transport and activities", "$20–$60"],
+          ["Approximate total per day", "$45–$130"]
+        ]
+      },
+
+      everest: {
+        name: "Everest Region",
+        image: "Everest.jpg",
+
+        description:
+          "The Everest Region is located in northeastern Nepal " +
+          "and is famous for Mount Everest, the world's highest " +
+          "mountain above sea level. It offers Himalayan scenery, " +
+          "trekking routes, and Sherpa cultural experiences.",
+
+        attractions: [
+          {
+            name: "Everest Base Camp",
+            description: "Experience a famous trekking destination in the Himalayas."
+          },
+          {
+            name: "Namche Bazaar",
+            description: "Explore a mountain town known as a gateway to Everest."
+          },
+          {
+            name: "Tengboche Monastery",
+            description: "Visit a Buddhist monastery surrounded by mountain scenery."
+          }
+        ],
+
+        budget: [
+          ["Accommodation", "$15–$40"],
+          ["Meals", "$20–$45"],
+          ["Guides, permits, and activities", "$30–$100"],
+          ["Approximate total per day", "$65–$185"]
+        ]
+      }
+
+    };
+
+    const params = new URLSearchParams(window.location.search);
+   const requestedPlace = params.get("place");
+const selectedPlace = destinations[requestedPlace]
+  ? requestedPlace
+  : "pokhara";
+
+const place = destinations[selectedPlace];
+
+    document.title = place.name + " | Visit Nepal";
+
+    document.getElementById("place-name").textContent = place.name;
+
+    const placeImage = document.getElementById("place-image");
+    placeImage.src = place.image;
+    placeImage.alt = "Scenery of " + place.name + ", Nepal";
+
+    document.getElementById("place-description").textContent =
+      place.description;
+
+    document.getElementById("review-link").href =
+      "reviews.html?place=" + selectedPlace;
+
+    const attractionsList = document.getElementById("attractions-list");
+
+    place.attractions.forEach(function(attraction) {
+
+      const card = document.createElement("article");
+      card.className = "card";
+
+      const heading = document.createElement("h3");
+      heading.textContent = attraction.name;
+
+      const description = document.createElement("p");
+      description.textContent = attraction.description;
+
+      card.appendChild(heading);
+      card.appendChild(description);
+
+      attractionsList.appendChild(card);
+
+    });
+
+    const budgetList = document.getElementById("budget-list");
+
+    place.budget.forEach(function(item) {
+
+      const listItem = document.createElement("li");
+
+      const label = document.createElement("span");
+      label.textContent = item[0];
+
+      const cost = document.createElement("strong");
+      cost.textContent = item[1];
+
+      listItem.appendChild(label);
+      listItem.appendChild(cost);
+
+      budgetList.appendChild(listItem);
+
+    });
+
+    const reviewsContainer = document.getElementById(
+      "destination-reviews"
+    );
+
+    const savedReviews = JSON.parse(
+      localStorage.getItem("nepalReviews") || "[]"
+    );
+
+    const destinationReviews = savedReviews.filter(function(review) {
+      return review.destination === place.name;
+    });
+
+    document.getElementById("leave-review-link").href =
+      "reviews.html?place=" + selectedPlace;
+
+    if (destinationReviews.length === 0) {
+
+      const message = document.createElement("p");
+
+      message.textContent =
+        "No reviews yet for " + place.name +
+        ". Be the first to share your experience!";
+
+      reviewsContainer.appendChild(message);
+
+    } else {
+
+      destinationReviews.reverse().forEach(function(review) {
+
+        const card = document.createElement("article");
+        card.className = "card";
+
+        const heading = document.createElement("h3");
+        heading.textContent = review.name;
+
+        const rating = document.createElement("p");
+
+        const stars = Math.max(
+          0,
+          Math.min(5, Math.round(Number(review.rating) || 0))
+        );
+
+        rating.textContent =
+          "Rating: " +
+          "★".repeat(stars) +
+          "☆".repeat(5 - stars);
+
+        const experience = document.createElement("p");
+        experience.textContent = review.experience;
+
+        const date = document.createElement("p");
+        date.className = "note";
+        date.textContent = "Posted: " + review.date;
+
+        card.appendChild(heading);
+        card.appendChild(rating);
+        card.appendChild(experience);
+        card.appendChild(date);
+
+        reviewsContainer.appendChild(card);
+
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>
